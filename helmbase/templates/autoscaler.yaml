@@ -1,0 +1,12 @@
+# apiVersion: autoscaling/v1
+# kind: HorizontalPodAutoscaler
+# metadata:
+#     name: {{ include "web.fullname" . }}-autoscaler
+# spec:
+#   scaleTargetRef:
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     name: {{ include "web.fullname" . }}-deployment
+#   minReplicas: 3
+#   maxReplicas: 6
+#   targetCPUUtilizationPercentage: 85

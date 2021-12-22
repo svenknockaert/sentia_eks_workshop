@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "web.fullname" . }}-deployment
+  labels:
+    app: {{ include "web.name" . }}
+  # annotations:
+  #       checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "web.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "web.name" . }}
+    spec:
+      containers:
+      - image: nginx:latest
+        imagePullPolicy: Always
+        name: {{ include "web.name" . }}
+        ports:
+        - containerPort: 80

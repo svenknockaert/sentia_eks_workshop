@@ -1,0 +1,15 @@
+AWS credentials file 
+------
+[odisee]
+aws_access_key_id=AKIAYJY32O2VDZPUIPV4
+aws_secret_access_key=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
+region=eu-west-1
+
+
+AWS CLI commands
+----
+export AWS_PROFILE=odisee
+aws eks update-kubeconfig --name workshop-cluster --region eu-west-1 
+kubectl create namespace odisee-<groepnummer>
+
+Certificate ARN: eu-west-1:570752136874:certificate/6060a3b8-0e35-4c5d-813b-9078031b80d0
