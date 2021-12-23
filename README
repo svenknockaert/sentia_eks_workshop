@@ -12,4 +12,4 @@ export AWS_PROFILE=odisee
 aws eks update-kubeconfig --name workshop-cluster --region eu-west-1 
 kubectl create namespace odisee-<groepnummer>
 
-Certificate ARN: eu-west-1:570752136874:certificate/6060a3b8-0e35-4c5d-813b-9078031b80d0
+Certificate ARN: arn:aws:acm:eu-west-1:570752136874:certificate/6060a3b8-0e35-4c5d-813b-9078031b80d0
