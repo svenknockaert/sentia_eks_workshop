@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "web.fullname" . }}-deployment2
+  labels:
+    app: {{ include "web.name" . }}2
+  # annotations:
+  #       checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "web.name" . }}2
+  template:
+    metadata:
+      labels:
+        app: {{ include "web.name" . }}2
+    spec:
+      containers:
+      - image: ealen/echo-server
+        imagePullPolicy: Always
+        name: {{ include "web.name" . }}2
+        ports:
+        - containerPort: 80

@@ -4,12 +4,22 @@ metadata:
   name: {{ include "web.fullname" . }}-ingress
   annotations:
     kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-1:570752136874:certificate/6060a3b8-0e35-4c5d-813b-9078031b80d0
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
+
   labels:
     app: {{ include "web.name" . }}-ingress
 spec:
   rules:
-    - http:
+    - host: odisee-20.training.sentiaws.cloud
+      http:
         paths:
+          - path: /echo-server
+            backend:
+              serviceName: {{ include "web.fullname" . }}-service2
+              servicePort: 80
           - path: /*
             backend:
               serviceName: {{ include "web.fullname" . }}-service
